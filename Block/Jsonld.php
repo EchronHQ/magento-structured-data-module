@@ -145,7 +145,7 @@ class Jsonld extends Template
         if (empty($aboutPage)) {
             return false;
         }
-        
+
         $currentPage = $this->getPage()->getIdentifier();
 
         if ($this->getConfig('structureddata/cms/enable_about') && $currentPage == $aboutPage) {
@@ -153,5 +153,16 @@ class Jsonld extends Template
         }
 
         return false;
+    }
+    public function getMainEntity(){
+        $mainEntity = $this->getChildHtml('main.entity');
+        if($mainEntity)
+        {
+            // TODO: do we always need to decode this?
+            $decoded = html_entity_decode($mainEntity, ENT_QUOTES | ENT_HTML5);
+
+            return $decoded;
+        }
+        return null;
     }
 }
