@@ -243,8 +243,9 @@ class Product
         $this->_product = $product;
 
         $children = $this->getChildren();
+        $data = [];
         if ($children) {
-            $offers = $data = [];
+            $offers = [];
             $lastKey = key(array_slice($children, -1, 1, true));
 
             foreach ($children as $key => $_childProduct) {
@@ -654,7 +655,7 @@ class Product
     {
         return htmlspecialchars($data, ENT_QUOTES | ENT_SUBSTITUTE, null, false);
     }
-    
+
     protected function getCacheId($productId)
     {
         return StructuredDataCache::TYPE_IDENTIFIER . '_' . $this->getStore()->getId() . '_' . $productId;
